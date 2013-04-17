@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <string.h>
 #include <strings.h>
+#include <linux/limits.h>
+#include <sys/types.h>
+#include <inttypes.h>
 #include <usb.h>
 #include <errno.h>
 

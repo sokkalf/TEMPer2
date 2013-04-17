@@ -1,8 +1,16 @@
 #include <stdio.h>
 #include <string.h>
 #include <strings.h>
+#include <linux/limits.h>
+#include <sys/types.h>
+#include <inttypes.h>
 #include <usb.h>
 #include <errno.h>
+
+typedef uint8_t  u_int8_t;
+typedef uint16_t u_int16_t;
+typedef uint32_t u_int32_t;
+typedef uint64_t u_int64_t;
 
 /*
  * Temper.c by Robert Kavaler (c) 2009 (relavak.com)
@@ -206,7 +214,7 @@ TemperSendCommand8(Temper *t, int a, int b, int c, int d, int e, int f, int g, i
 	buf[7] = h;
 
 	if(t->debug) {
-		printf("sending bytes %02x, %02x, %02x, %02x, %02x, %02x, %02x, %02x (buffer len = %d)\n",
+		printf("sending bytes %02x, %02x, %02x, %02x, %02x, %02x, %02x, %02x (buffer len = %lu)\n",
 		       a, b, c, d, e, f, g, h, sizeof(buf));
 	}
 
@@ -231,7 +239,7 @@ TemperSendCommand2(Temper *t, int a, int b)
 	buf[1] = b;
 
 	if(t->debug) {
-		printf("sending bytes %02x, %02x (buffer len = %d)\n",
+		printf("sending bytes %02x, %02x (buffer len = %lu)\n",
 		       a, b, sizeof(buf));
 	}
 
