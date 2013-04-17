@@ -10,6 +10,7 @@ Creates a library mainly for supporting my ruby gem 'temper2-ruby'
 to install:
 
 make
+
 make install
 
 ----------------------------
