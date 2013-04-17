@@ -8,17 +8,20 @@ LDFLAGS:=-L extra/lib
 
 TEMPER_OBJS:=comm.o
 
-all:	temper
+all:	libtemper2.so
 
 %.o:	%.c
-	$(CC) -c $(CFLAGS) -DUNIT_TEST -o $@ $^
+	$(CC) -c $(CFLAGS) -fPIC -DUNIT_TEST -o $@ $^
 
-temper:		$(TEMPER_OBJS) temper.o
-	$(CC) $(LDFLAGS) -o $@ $^ -lusb
+libtemper2.so:		$(TEMPER_OBJS) 
+	$(CC) -fPIC -lusb -shared -o $@ $^
 
 clean:		
-	rm -f temper *.o
+	rm -f temper *.o libtemper2.so
 
 rules-install:			# must be superuser to do this
 	cp 99-tempsensor.rules /etc/udev/rules.d
+
+install:
+	cp libtemper2.so /usr/lib/
 
